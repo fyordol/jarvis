@@ -1,0 +1,62 @@
+llm:
+  api_url: "http://127.0.0.1:8080/v1/chat/completions"
+  default_model: "qwen"
+  models:
+    planner: "qwen"
+    vision: "qwen"
+    agent: "qwen"
+    screen_agent: "qwen"
+    calculator: "qwen"
+    terminal_agent: "qwen"
+  retry_count: 2
+  retry_delay_sec: 1.0
+
+voice:
+  wake_words: ["джарвис", "жарвис", "jarvis"]
+  require_wake_word: true
+  tts_enabled: false
+  tts_rate: 180
+
+paths:
+  llama_dir: "C:\\llama-cpp"
+  models_dir: "C:\\llama-cpp\\models"
+
+llama:
+  quiet: true          # не печатать логи llama-server в консоль
+  log_verbosity: 1     # 0=минимум, 1=ошибки, 2=warnings, 3=info (дефолт llama)
+
+files:
+  allowed_roots:
+    - desktop
+    - documents
+    - downloads
+    - jarvis
+
+terminal:
+  enabled: true
+  llm_agent_enabled: false
+  timeout_sec: 30
+  allowed_binaries:
+    - git
+    - python
+    - pip
+    - py
+    - node
+    - npm
+    - dir
+    - echo
+    - type
+    - where
+    - pytest
+
+remote:
+  telegram_enabled: false
+  telegram_token: ""
+
+dialog:
+  history_max: 20
+
+vision:
+  min_confidence: 0.45
+  ocr_enabled: true
+  verify_clicks: true
