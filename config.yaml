@@ -8,22 +8,127 @@ llm:
     screen_agent: "qwen"
     calculator: "qwen"
     terminal_agent: "qwen"
-  retry_count: 2
-  retry_delay_sec: 1.0
+    search: "qwen"
+    homework: "qwen"
+    brain: "qwen"
+  retry_count: 1
+  retry_delay_sec: 0.4
+  max_tokens:
+    vision: 180
+    screen_agent: 360
+    planner: 360
+    agent: 200
+    calculator: 32
+    terminal_agent: 80
+    search: 24
+    homework: 2200
+    brain: 900
+
+composer:
+  enabled: true
+  model: composer-2.5
+  api_key: ""
+  min_words: 8
+  homework: false
+  every_command: false
+
+brain:
+  enabled: true
+  city: "Мытищи"
+  max_rounds: 6
+  timeout_sec: 90
+  python_timeout_sec: 60
+  web_chars: 3500
+  confirm_risky_code: true
+  confirm_messages: true
+  browser_search: true
+  browser_wait_sec: 3
+  headless_timeout_sec: 20
+
+search:
+  llm_rewrite_over_words: 4
+  engine: yandex
+  browser: yandex
+
+homework:
+  diary_url: "https://authedu.mosreg.ru/diary/homeworks/homeworks"
+  use_diary: true
+  diary_wait_sec: 5
+  grade: ""
+  output_dir: ""
+  folders: []
+  max_age_days: 4
+  max_tasks: 6
+  scan_budget_sec: 1.5
+  shot_max_size: 1600
+  extract_max_tokens: 900
+  extract_timeout_sec: 90
+  solve_timeout_sec: 300
+  open_gdz: true
+  textbooks:
+    алгебра: ""
+    геометрия: ""
+    русский: ""
 
 voice:
   wake_words: ["джарвис", "жарвис", "jarvis"]
-  require_wake_word: true
+  require_wake_word: false
+  ptt_key: escape
+  ptt_tap_sec: 0.28
   tts_enabled: false
+  tts_engines: ["silero", "piper", "edge", "pyttsx3"]
+  silero_model: "silero_v4_ru.pt"
+  silero_speaker: "aidar"
+  silero_threads: 4
+  piper_voice: "ru_RU-dmitri-medium"
+  edge_voice: "ru-RU-DmitryNeural"
+  edge_rate: "+8%"
+  edge_pitch: "-4Hz"
+  edge_timeout_sec: 10
+  edge_retries: 2
+  tts_volume: 1000
+  tts_max_chars: 350
+  narrate: false
   tts_rate: 180
+  pause_threshold: 1.35
+  non_speaking_duration: 0.65
+  mic_name: ""
+  min_energy: 80
+  phrase_time_limit: 0
+  followup_timeout: 7
+
+message:
+  app: telegram
+
+ui:
+  host: "127.0.0.1"
+  port: 8765
+  open_window: true
+  notify_confirm: true
 
 paths:
   llama_dir: "C:\\llama-cpp"
   models_dir: "C:\\llama-cpp\\models"
 
 llama:
-  quiet: true          # не печатать логи llama-server в консоль
-  log_verbosity: 1     # 0=минимум, 1=ошибки, 2=warnings, 3=info (дефолт llama)
+  quiet: true
+  log_verbosity: 1
+  model: "Qwen3VL-8B-Instruct-Q8_0.gguf"
+  mmproj: "mmproj-Qwen3VL-8B-Instruct-F16.gguf"
+  ngl: 99
+  ctx: 8192
+  threads: 8
+  batch: 512
+  flash_attn: true
+  host: "127.0.0.1"
+  port: 8080
+
+mouse:
+  move_duration: 0.0
+
+timing:
+  after_click: 0.12
+  after_open: 0.8
 
 files:
   allowed_roots:
@@ -36,18 +141,11 @@ terminal:
   enabled: true
   llm_agent_enabled: false
   timeout_sec: 30
-  allowed_binaries:
-    - git
-    - python
-    - pip
-    - py
-    - node
-    - npm
-    - dir
-    - echo
-    - type
-    - where
-    - pytest
+  allowed_binaries: ["git", "python", "pip", "py", "node", "npm", "dir", "echo", "type", "where", "pytest"]
+
+bus:
+  enabled: true
+  poll_ms: 60
 
 remote:
   telegram_enabled: false
@@ -57,6 +155,15 @@ dialog:
   history_max: 20
 
 vision:
-  min_confidence: 0.45
+  min_confidence: 0.35
   ocr_enabled: true
-  verify_clicks: true
+  verify_clicks: false
+  retry_count: 0
+  replan_count: 1
+  jpeg_quality: 80
+  max_size: 1280
+  shot_ttl_sec: 0.2
+  timeout_sec: 45
+  uia_enabled: true
+  uia_timeout_sec: 0.7
+  uia_depth: 12

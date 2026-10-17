@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070a">
+  <title>JARVIS</title>
+  <link rel="icon" href="/jarvis.ico">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="hud">
+    <header class="top">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>
+          <text x="32" y="34" text-anchor="middle" dominant-baseline="central" font-size="30" font-family="Georgia, serif" font-weight="700">J</text>
+        </svg>
+        <div>
+          <div class="name">JARVIS</div>
+          <div class="sub" id="modelLine">локальный ассистент</div>
+        </div>
+      </div>
+      <div class="status" id="statusPill" data-state="boot">запуск</div>
+    </header>
+
+    <div class="voice" id="voiceLine" data-state="armed"><span class="dot"></span><span id="voiceText">зажми Esc и говори</span></div>
+
+    <main class="log" id="log"></main>
+
+    <div class="chips" id="chips">
+      <button type="button" data-cmd="сделай дз на завтра">Сделай ДЗ</button>
+      <button type="button" data-cmd="открой ютуб">YouTube</button>
+      <button type="button" data-cmd="открой проводник">Проводник</button>
+      <button type="button" data-cmd="открой github">GitHub</button>
+    </div>
+
+    <form class="composer" id="form">
+      <input id="input" type="text" autocomplete="off" spellcheck="false"
+             placeholder="Команда…" maxlength="500" disabled>
+      <button type="submit" id="send" disabled>→</button>
+    </form>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
